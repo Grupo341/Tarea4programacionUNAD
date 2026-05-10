@@ -5,7 +5,7 @@
 
 # Importa los módulos del sistema
 from clientes import Cliente
-from servicios import Servicio
+from servicios import AsesoriaEspecializada
 from reservas import Reserva
 
 # =========================================================
@@ -48,10 +48,12 @@ while True:
 
     if opcion == "1":
 
+        codigo = input("Ingrese codigo del cliente: ")
         nombre = input("Ingrese nombre del cliente: ")
         telefono = input("Ingrese teléfono: ")
+        correo = input("Ingrese correo:")
 
-        nuevo_cliente = Cliente(nombre, telefono)
+        nuevo_cliente = Cliente(codigo, nombre, correo, telefono)
 
         clientes.append(nuevo_cliente)
 
@@ -63,10 +65,11 @@ while True:
 
     elif opcion == "2":
 
+        codigo = input("Ingrese codigo del servicio")
         nombre_servicio = input("Ingrese nombre del servicio: ")
-        precio = input("Ingrese precio: ")
+        precio = float(input("Ingrese precio: "))
 
-        nuevo_servicio = Servicio(nombre_servicio, precio)
+        nuevo_servicio = AsesoriaEspecializada(codigo, nombre_servicio, precio)
 
         servicios.append(nuevo_servicio)
 
@@ -85,8 +88,9 @@ while True:
 
             cliente = clientes[0]
             servicio = servicios[0]
+            duracion = float(input("ingrese duracion de la reserva: "))
 
-            nueva_reserva = Reserva(cliente, servicio)
+            nueva_reserva = Reserva(cliente, servicio, duracion)
 
             reservas.append(nueva_reserva)
 
