@@ -5,3 +5,24 @@ Traceback (most recent call last):
 ValueError: could not convert string to float: 'abc'
 2026-05-09 23:07:20,444 - INFO - Cliente registrado correctamente
 2026-05-09 23:07:44,136 - INFO - Reserva creada correctamente
+2026-05-09 23:53:14,362 - INFO - Cliente registrado correctamente
+2026-05-09 23:53:40,187 - INFO - Servicio registrado correctamente
+2026-05-09 23:53:47,567 - INFO - Reserva creada correctamente
+2026-05-09 23:54:11,165 - ERROR - Error personalizado: el precio o tipo de servicio es inválido
+Traceback (most recent call last):
+  File "C:\Users\adrig\OneDrive - Universidad Nacional Abierta y a Distancia\Escritorio\UNAD Tercer Semestre\Programación\Tarea4programacionUNAD\main.py", line 73, in <module>
+    precio = float(input("Ingrese precio: "))
+ValueError: could not convert string to float: 'abc'
+2026-05-09 23:54:11,179 - ERROR - Error encadenado: datos inválidos en servicio
+Traceback (most recent call last):
+  File "C:\Users\adrig\OneDrive - Universidad Nacional Abierta y a Distancia\Escritorio\UNAD Tercer Semestre\Programación\Tarea4programacionUNAD\main.py", line 73, in <module>
+    precio = float(input("Ingrese precio: "))
+ValueError: could not convert string to float: 'abc'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\adrig\OneDrive - Universidad Nacional Abierta y a Distancia\Escritorio\UNAD Tercer Semestre\Programación\Tarea4programacionUNAD\main.py", line 92, in <module>
+    raise ErrorServicio("Error encadenado: datos inválidos en servicio") from e
+excepciones.ErrorServicio: Error encadenado: datos inválidos en servicio
+2026-05-09 23:54:18,646 - INFO - Reserva creada correctamente
