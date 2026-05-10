@@ -5,16 +5,16 @@
 
 # Importa los módulos del sistema
 from clientes import Cliente
-from servicios import AsesoriaEspecializada
+from servicios import AsesoriaEspecializada, ReservaSala, AlquilerEquipo
 from reservas import Reserva
 
 import logging
 
 logging.basicConfig(
     filename="logs.txt",
-    level=logging.ERROR,
+    level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
-)
+    )
 
 # =========================================================
 # MENÚ PRINCIPAL
@@ -56,17 +56,25 @@ while True:
 
     if opcion == "1":
 
-        codigo = input("Ingrese codigo del cliente: ")
-        nombre = input("Ingrese nombre del cliente: ")
-        telefono = input("Ingrese teléfono: ")
-        correo = input("Ingrese correo:")
+        try:
+            codigo = input("Ingrese codigo del cliente: ")
+            nombre = input("Ingrese nombre del cliente: ")
+            telefono = input("Ingrese teléfono: ")
+            correo = input("Ingrese correo:")
 
-        nuevo_cliente = Cliente(codigo, nombre, correo, telefono)
+            nuevo_cliente = Cliente(codigo, nombre, correo, telefono)
+            clientes.append(nuevo_cliente)
 
-        clientes.append(nuevo_cliente)
+        except Exception as e:
+            print("Error al registrar cliente:", e)
+            logging.error("Error al registrar cliente", exc_info=True)
 
-        print("Cliente registrado correctamente")
+        else:
+            print("Cliente registrado correctamente")
+            logging.info("Cliente registrado correctamente")
 
+        finally:
+            print("Operación de cliente finalizada")
     # -----------------------------------------------------
     # OPCIÓN 2 - REGISTRAR SERVICIO
     # -----------------------------------------------------
@@ -98,21 +106,32 @@ while True:
 
     elif opcion == "3":
 
-        if len(clientes) == 0 or len(servicios) == 0:
-            print("Debe registrar clientes y servicios primero")
-
-        else:
+        try:
+            if len(clientes) == 0 or len(servicios) == 0:
+             raise ValueError("Debe registrar clientes y servicios primero")
 
             cliente = clientes[0]
             servicio = servicios[0]
-            duracion = float(input("ingrese duracion de la reserva: "))
+            duracion = float(input("Ingrese duración de la reserva: "))
 
             nueva_reserva = Reserva(cliente, servicio, duracion)
-
             reservas.append(nueva_reserva)
 
-            print("Reserva creada correctamente")
+        except ValueError as e:
+            print("Error:", e)
+            logging.error("Error al crear reserva", exc_info=True)
 
+        except Exception as e:
+            print("Error inesperado:", e)
+            logging.error("Error inesperado en reserva", exc_info=True)
+
+        else:
+            print("Reserva creada correctamente")
+            logging.info("Reserva creada correctamente")
+
+        finally:
+            print("Operación de reserva finalizada")
+            
     # -----------------------------------------------------
     # OPCIÓN 4 - SALIR
     # -----------------------------------------------------

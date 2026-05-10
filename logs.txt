@@ -3,3 +3,5 @@ Traceback (most recent call last):
   File "C:\Users\adrig\OneDrive - Universidad Nacional Abierta y a Distancia\Escritorio\UNAD Tercer Semestre\Programación\Tarea4programacionUNAD\main.py", line 79, in <module>
     precio = float(input("Ingrese precio: "))
 ValueError: could not convert string to float: 'abc'
+2026-05-09 23:07:20,444 - INFO - Cliente registrado correctamente
+2026-05-09 23:07:44,136 - INFO - Reserva creada correctamente
