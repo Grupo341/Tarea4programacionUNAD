@@ -8,6 +8,14 @@ from clientes import Cliente
 from servicios import AsesoriaEspecializada
 from reservas import Reserva
 
+import logging
+
+logging.basicConfig(
+    filename="logs.txt",
+    level=logging.ERROR,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
 # =========================================================
 # MENÚ PRINCIPAL
 # =========================================================
@@ -67,13 +75,22 @@ while True:
 
         codigo = input("Ingrese codigo del servicio")
         nombre_servicio = input("Ingrese nombre del servicio: ")
-        precio = float(input("Ingrese precio: "))
+        try:            
+            precio = float(input("Ingrese precio: "))
 
-        nuevo_servicio = AsesoriaEspecializada(codigo, nombre_servicio, precio)
+            nuevo_servicio = AsesoriaEspecializada(codigo, nombre_servicio, precio)
 
-        servicios.append(nuevo_servicio)
+            servicios.append(nuevo_servicio)
 
-        print("Servicio registrado correctamente")
+            print("Servicio registrado correctamente")
+
+
+        except ValueError as e:
+            print("Error: debe ingresar un numero valido") 
+            logging.error("Precio invalido", exc_info=True)
+            
+
+        
 
     # -----------------------------------------------------
     # OPCIÓN 3 - CREAR RESERVA
